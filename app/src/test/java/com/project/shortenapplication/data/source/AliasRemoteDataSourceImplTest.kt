@@ -11,22 +11,23 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class AliasRemoteDataSource {
+class AliasRemoteDataSourceImplTest {
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-     @RelaxedMockK
-     lateinit var aliasAPIContract: AliasAPIContract
+    @RelaxedMockK
+    lateinit var aliasAPIContract: AliasAPIContract
 
-     init {
-         MockKAnnotations.init(this, relaxUnitFun = true)
-     }
+    init {
+        MockKAnnotations.init(this, relaxUnitFun = true)
+    }
 
     @Before
     fun setup() {
@@ -37,12 +38,14 @@ class AliasRemoteDataSource {
     @Test
     fun `should reduce remote link`() = runTest {
         coEvery {
-            aliasAPIContract.reduceURL(UrlRequest("wwww.google.com"))
+            aliasAPIContract.reduceURL(UrlRequest("www.google.com"))
         } returns AliasURLResponse("5425", URLLinks("wwww.google.com", "www.shorten.com/5425"))
 
+        val aliasAPIRemote = AliasRemoteDataSourceImpl(aliasAPIContract)
+        aliasAPIRemote.shortenURL("www.google.com")
+
         coVerify(exactly = 1) {
-            val aliasAPIRemote = AliasRemoteDataSourceImpl(aliasAPIContract)
-            aliasAPIRemote.shortenURL(any())
+            aliasAPIRemote.shortenURL("www.google.com")
         }
     }
 }

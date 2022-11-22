@@ -15,7 +15,7 @@ ext {
     // tests
     jUnit = '4.+'
     mockk = '1.11.0'
-    coroutinesTest = '1.4.2'
+    coroutinesTest = '1.6.4'
     archTest = '2.1.0'
     mockWebServer = '4.9.3'
     coreKtxTest = '1.4.0'
