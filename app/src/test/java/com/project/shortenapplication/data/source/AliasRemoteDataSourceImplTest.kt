@@ -35,7 +35,7 @@ class AliasRemoteDataSourceImplTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `should reduce remote link`() = runTest {
+    fun `should shorten remote link`() = runTest {
         coEvery {
             aliasAPIContract.createAliasFromURL(UrlRequest("www.google.com"))
         } returns AliasURLResponse("5425", URLLinks("wwww.google.com", "www.shorten.com/5425"))
