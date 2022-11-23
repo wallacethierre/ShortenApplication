@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class AliasListActivity : AppCompatActivity() {
 
     private val binding get() = _binding!!
     private var _binding: ActivityMainBinding? = null

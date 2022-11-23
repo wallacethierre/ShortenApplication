@@ -28,9 +28,6 @@ class AliasRepository @Inject constructor(
         return false
     }
 
-    override suspend fun getOriginalURL(alias: String): String =
-        aliasRemoteDataSource.getOriginalURL(alias)
-
     override fun getAllAlias(): LiveData<List<AliasDomain>> = Transformations.map(
         aliasLocalDataSource.getAllAlias()
     ) {

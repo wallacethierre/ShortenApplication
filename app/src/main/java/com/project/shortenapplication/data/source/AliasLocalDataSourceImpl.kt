@@ -15,8 +15,4 @@ class AliasLocalDataSourceImpl @Inject constructor(private val aliasLocalDataSou
     override fun getAllAlias(): LiveData<List<AliasEntity>> {
         return aliasLocalDataSource.getAllAlias()
     }
-
-    override fun getOriginalURLByAlias(alias: String): String? {
-        return aliasLocalDataSource.getOriginalUrlByAlias(alias)
-    }
 }

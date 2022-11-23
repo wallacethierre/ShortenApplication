@@ -10,12 +10,3 @@ fun List<AliasEntity>.containAlias(alias: String): Boolean {
     }
     return false
 }
-
-fun List<AliasEntity>.getIndexOfItem(alias: String): Int {
-    this.forEachIndexed { index, aliasEntity ->
-        if (aliasEntity.aliasURL == alias) {
-            return index
-        }
-    }
-    return -1
-}

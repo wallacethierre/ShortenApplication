@@ -11,8 +11,4 @@ class AliasRemoteDataSourceImpl @Inject constructor(private val networkSource: A
     override suspend fun createAliasFromURL(url: String): AliasURLResponse {
         return networkSource.createAliasFromURL(UrlRequest(url))
     }
-
-    override suspend fun getOriginalURL(alias: String): String {
-        return networkSource.getAliasById(alias)
-    }
 }
