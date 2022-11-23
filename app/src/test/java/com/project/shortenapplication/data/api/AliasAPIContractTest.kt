@@ -44,7 +44,7 @@ class AliasAPIContractTest {
         val aliasAPIResponseJson = gson.toJson(aliasURLResponse)
         server.enqueue(MockResponse().setBody(aliasAPIResponseJson))
 
-        val result = aliasAPI.reduceURL(UrlRequest("wwww.google.com"))
+        val result = aliasAPI.createAliasFromURL(UrlRequest("wwww.google.com"))
 
         Assert.assertEquals(result, aliasURLResponse)
 

@@ -14,11 +14,11 @@ class AliasRepository @Inject constructor(
     private val aliasRemoteDataSource: AliasRemoteDataSource,
     private val aliasLocalDataSource: AliasLocalDataSource
 ) : AliasRepositoryContract {
-    override suspend fun shortenURL(url: String): Boolean {
-        val networkData = aliasRemoteDataSource.shortenURL(url)
+    override suspend fun createAliasFromURL(url: String): Boolean {
+        val networkData = aliasRemoteDataSource.createAliasFromURL(url)
         if (networkData != null) {
             val aliasEntity = AliasEntity(
-                networkData.alias,
+                networkData.aliasURL,
                 networkData.links.selfURL,
                 networkData.links.shortURL
             )

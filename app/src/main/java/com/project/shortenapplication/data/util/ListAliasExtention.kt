@@ -4,7 +4,7 @@ import com.project.shortenapplication.data.local.entity.AliasEntity
 
 fun List<AliasEntity>.containAlias(alias: String): Boolean {
     this.forEach {
-        val existAlias = it.alias == alias
+        val existAlias = it.aliasURL == alias
         if (existAlias)
             return true
     }
@@ -13,7 +13,7 @@ fun List<AliasEntity>.containAlias(alias: String): Boolean {
 
 fun List<AliasEntity>.getIndexOfItem(alias: String): Int {
     this.forEachIndexed { index, aliasEntity ->
-        if (aliasEntity.alias == alias) {
+        if (aliasEntity.aliasURL == alias) {
             return index
         }
     }

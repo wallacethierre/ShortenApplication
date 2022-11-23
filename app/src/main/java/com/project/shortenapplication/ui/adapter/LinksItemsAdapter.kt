@@ -1,4 +1,4 @@
-package com.project.shortenapplication.ui
+package com.project.shortenapplication.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

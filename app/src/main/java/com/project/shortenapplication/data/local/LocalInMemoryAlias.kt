@@ -9,7 +9,6 @@ import com.project.shortenapplication.data.util.getIndexOfItem
 object LocalInMemoryAlias {
 
     private var mutableLiveDataAliasList: MutableLiveData<List<AliasEntity>> = MutableLiveData()
-    var listAlias: LiveData<List<AliasEntity>> = mutableLiveDataAliasList
     private var storageMemory: List<AliasEntity>
 
     init {
@@ -17,7 +16,7 @@ object LocalInMemoryAlias {
     }
 
     fun insertURL(link: AliasEntity): Boolean {
-        if (!(mutableLiveDataAliasList.value?.containAlias(link.alias) == true)) {
+        if (mutableLiveDataAliasList.value?.containAlias(link.aliasURL) != true) {
             storageMemory = storageMemory.plusElement(link)
             mutableLiveDataAliasList.value = storageMemory
             return true
@@ -33,7 +32,7 @@ object LocalInMemoryAlias {
         val index = mutableLiveDataAliasList.value?.getIndexOfItem(alias)
         if (index != null && index != -1) {
             return mutableLiveDataAliasList.value?.let {
-                it.get(index).selfURL
+                it[index].selfURL
             }
         }
         return null

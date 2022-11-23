@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 class AliasRemoteDataSourceImpl @Inject constructor(private val networkSource: AliasAPIContract):
     AliasRemoteDataSource {
-    override suspend fun shortenURL(url: String): AliasURLResponse {
-        return networkSource.reduceURL(UrlRequest(url))
+    override suspend fun createAliasFromURL(url: String): AliasURLResponse {
+        return networkSource.createAliasFromURL(UrlRequest(url))
     }
 
     override suspend fun getOriginalURL(alias: String): String {
-        return networkSource.getURL(alias)
+        return networkSource.getAliasById(alias)
     }
 }

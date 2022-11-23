@@ -6,8 +6,8 @@ import com.project.shortenapplication.domain.entity.AliasDomain
 import com.project.shortenapplication.domain.entity.URLLinksDomain
 
 fun AliasURLResponse.toAliasDomain() =
-    AliasDomain(this.alias, linksDomain = URLLinksDomain(this.links.selfURL, this.links.shortURL))
+    AliasDomain(this.aliasURL, linksDomain = URLLinksDomain(this.links.selfURL, this.links.shortURL))
 
 fun List<AliasEntity>.toListAliasDomain(): List<AliasDomain> {
-    return map { AliasDomain(it.alias, linksDomain = URLLinksDomain(it.selfURL, it.shortURL))}
+    return map { AliasDomain(it.aliasURL, linksDomain = URLLinksDomain(it.selfURL, it.shortURL))}
 }

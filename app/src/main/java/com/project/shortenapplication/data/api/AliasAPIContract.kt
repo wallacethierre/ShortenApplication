@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface AliasAPIContract {
     @POST("alias")
-    suspend fun reduceURL(@Body url: UrlRequest): AliasURLResponse
+    suspend fun createAliasFromURL(@Body url: UrlRequest): AliasURLResponse
 
     @GET("alias/id")
-    suspend fun getURL(@Query("id") alias: String): String
+    suspend fun getAliasById(@Query("id") alias: String): String
 
 
 }

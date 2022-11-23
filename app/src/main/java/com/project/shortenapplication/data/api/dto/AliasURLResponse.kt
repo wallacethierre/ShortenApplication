@@ -3,7 +3,7 @@ package com.project.shortenapplication.data.api.dto
 import com.google.gson.annotations.SerializedName
 
 data class AliasURLResponse(
-    val alias: String,
+    @SerializedName("alias") val aliasURL: String,
     @SerializedName("_links") val links: URLLinks
 )
 

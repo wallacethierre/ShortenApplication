@@ -6,13 +6,13 @@ import com.project.shortenapplication.data.local.entity.AliasEntity
 import com.project.shortenapplication.domain.entity.AliasDomain
 
 interface AliasRepositoryContract {
-    suspend fun shortenURL(url: String): Boolean
+    suspend fun createAliasFromURL(url: String): Boolean
     suspend fun getOriginalURL(alias: String): String
     fun getAllAlias(): LiveData<List<AliasDomain>>
 }
 
 interface AliasRemoteDataSource {
-    suspend fun shortenURL(url: String): AliasURLResponse
+    suspend fun createAliasFromURL(url: String): AliasURLResponse
     suspend fun getOriginalURL(alias: String): String
 }
 
