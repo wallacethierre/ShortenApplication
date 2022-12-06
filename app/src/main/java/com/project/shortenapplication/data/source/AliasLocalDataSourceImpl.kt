@@ -6,7 +6,8 @@ import com.project.shortenapplication.data.local.entity.AliasEntity
 import com.project.shortenapplication.domain.repository.AliasLocalDataSource
 import javax.inject.Inject
 
-class AliasLocalDataSourceImpl @Inject constructor(private val aliasLocalDataSource: LocalInMemoryAlias) : AliasLocalDataSource {
+class AliasLocalDataSourceImpl @Inject constructor(private val aliasLocalDataSource: LocalInMemoryAlias) :
+    AliasLocalDataSource {
 
     override fun insertAlias(link: AliasEntity): Boolean {
         return aliasLocalDataSource.insertURL(link)
@@ -15,4 +16,9 @@ class AliasLocalDataSourceImpl @Inject constructor(private val aliasLocalDataSou
     override fun getAllAlias(): LiveData<List<AliasEntity>> {
         return aliasLocalDataSource.getAllAlias()
     }
+
+    override fun getOriginalUrlByAlias(alias: String): String? {
+        return aliasLocalDataSource.getOriginalUrlByAlias(alias)
+    }
+
 }

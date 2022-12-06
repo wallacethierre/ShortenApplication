@@ -53,13 +53,24 @@ class AliasListActivity : AppCompatActivity() {
                 binding.edtInputURL.text.clear()
                 binding.recyclerView.scrollToPosition(0)
             } else {
-                binding.edtInputURL.error = "Field is empty, please insert url"
-                Snackbar.make(
-                    binding.root,
-                    "Please enter the link to shorten",
-                    Snackbar.LENGTH_LONG
-                )
-                    .show()
+                var alias = aliasViewModel.allAlias.value?.get(0)?.alias
+                if (alias != null) {
+                    binding.edtInputURL.error = "Field is empty, please insert url"
+                    Snackbar.make(
+                        binding.root,
+                        aliasViewModel.getOriginalUrlByAlias(alias),
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
+                }
+
+//                binding.edtInputURL.error = "Field is empty, please insert url"
+//                Snackbar.make(
+//                    binding.root,
+//                    "Please enter the link to shorten",
+//                    Snackbar.LENGTH_LONG
+//                )
+//                    .show()
             }
         }
     }

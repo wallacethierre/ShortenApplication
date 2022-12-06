@@ -14,6 +14,7 @@ class AliasRepository @Inject constructor(
     private val aliasRemoteDataSource: AliasRemoteDataSource,
     private val aliasLocalDataSource: AliasLocalDataSource
 ) : AliasRepositoryContract {
+
     override suspend fun createAliasFromURL(url: String): Boolean {
         val networkData = aliasRemoteDataSource.createAliasFromURL(url)
         if (networkData != null) {
@@ -32,5 +33,9 @@ class AliasRepository @Inject constructor(
         aliasLocalDataSource.getAllAlias()
     ) {
         it.toListAliasDomain()
+    }
+
+    override suspend fun getOriginalUrlById(alias: String): String {
+        return aliasRemoteDataSource.getOrinalUrlByAlias(alias)
     }
 }

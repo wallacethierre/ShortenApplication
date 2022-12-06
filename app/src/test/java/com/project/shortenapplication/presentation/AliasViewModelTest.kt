@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.project.shortenapplication.domain.entity.AliasDomain
 import com.project.shortenapplication.domain.entity.URLLinksDomain
 import com.project.shortenapplication.domain.interactor.GetAliasListUseCase
+import com.project.shortenapplication.domain.interactor.GetOriginalURL
 import com.project.shortenapplication.domain.interactor.ShortenURLUseCase
 import com.project.shortenapplication.ui.model.AliasView
 import com.project.shortenapplication.util.TestCoroutineRule
@@ -34,13 +35,16 @@ class AliasViewModelTest {
     @RelaxedMockK
     lateinit var getAliasListUseCase: GetAliasListUseCase
 
+    @RelaxedMockK
+    lateinit var getOriginalURL: GetOriginalURL
+
     init {
         MockKAnnotations.init(this, relaxUnitFun = true)
     }
 
     @Before
     fun setup() {
-        clearMocks(shortenURLUseCase, getAliasListUseCase)
+        clearMocks(shortenURLUseCase, getAliasListUseCase, getOriginalURL)
     }
 
     @Test
@@ -53,7 +57,7 @@ class AliasViewModelTest {
         }
 
 
-        val aliasViewModel = AliasViewModel(shortenURLUseCase, getAliasListUseCase)
+        val aliasViewModel = AliasViewModel(shortenURLUseCase, getAliasListUseCase, getOriginalURL)
         val result = aliasViewModel.allAlias.getOrAwaitValue()
 
         Assert.assertEquals(result, listOf(AliasView("5425","wwww.google.com", "www.shorten.com/5425" )))
